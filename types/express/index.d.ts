@@ -8,4 +8,4 @@ declare global{
     }
 }
 
-export type EngineType = 'facebook' | 'whatsapp' | 'default' | 'imessage' | 'sms' | 'google-messenger'
+export type MethodTypes = 'post' | 'patch' | 'get' | 'put' | 'delete'

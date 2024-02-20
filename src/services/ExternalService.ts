@@ -3,6 +3,7 @@ import got from "got"
 import { ObjectLiteral } from "typeorm"
 import { InternalServerError } from "@tsed/exceptions"
 import { Logger } from "../helpers/logger"
+import { MethodTypes } from "../../types/express"
 
 @Service()
 class ExternalService {
@@ -28,10 +29,10 @@ class ExternalService {
     this.options.searchParams = params
   }
 
-  public async post(url: string, statusCode = false) {
+  public async makeRequest(url: string, method: MethodTypes, statusCode = false) {
     let response
     try {
-      response = await got.post(url, this.options)
+      response = await got[method](url, this.options)
     } catch (error: any) {
       Logger.error(
         "External request error for url: " +
@@ -40,97 +41,6 @@ class ExternalService {
           JSON.stringify(this.options)
       )
 
-      let message: string | number =
-        "External request error Error: " + JSON.stringify(error.message)
-      if (statusCode && error.response?.statusCode) {
-        message = error.response.statusCode
-      }
-
-      throw new InternalServerError(JSON.stringify(message))
-    }
-    return response.body ? JSON.parse(response.body) : {}
-  }
-
-  public async get(url: string, statusCode = false) {
-    let response
-    try {
-      response = await got.get(url, this.options)
-    } catch (error: any) {
-      Logger.error(
-        "External request error for url: " +
-          url +
-          " Request structure: " +
-          JSON.stringify(this.options)
-      )
-
-      let message: string | number =
-        "External request error Error: " + JSON.stringify(error.message)
-      if (statusCode && error.response?.statusCode) {
-        message = error.response.statusCode
-      }
-
-      throw new InternalServerError(JSON.stringify(message))
-    }
-    return response.body ? JSON.parse(response.body) : {}
-  }
-
-  public async patch(url: string, statusCode = false) {
-    let response
-    try {
-      response = await got.patch(url, this.options)
-    } catch (error: any) {
-      Logger.error(
-        "External request error for url: " +
-          url +
-          " Request structure: " +
-          JSON.stringify(this.options)
-      )
-
-      let message: string | number =
-        "External request error Error: " + JSON.stringify(error.message)
-      if (statusCode && error.response?.statusCode) {
-        message = error.response.statusCode
-      }
-
-      throw new InternalServerError(JSON.stringify(message))
-    }
-    return response.body ? JSON.parse(response.body) : {}
-  }
-
-  public async put(url: string, statusCode = false) {
-    let response
-    try {
-      response = await got.put(url, this.options)
-    } catch (error: any) {
-      Logger.error(
-        "External request error for url: " +
-          url +
-          " Request structure: " +
-          JSON.stringify(this.options)
-      )
-
-      let message: string | number =
-        "External request error Error: " + JSON.stringify(error.message)
-      if (statusCode && error.response?.statusCode) {
-        message = error.response.statusCode
-      }
-
-      throw new InternalServerError(JSON.stringify(message))
-    }
-    return response.body ? JSON.parse(response.body) : {}
-  }
-
-  public async delete(url: string, statusCode = false) {
-    let response
-    try {
-      response = await got.delete(url, this.options)
-    } catch (error: any) {
-      Logger.error(
-        "External request error for url: " +
-          url +
-          " Request structure: " +
-          JSON.stringify(this.options)
-      )
       let message: string | number =
         "External request error Error: " + JSON.stringify(error.message)
       if (statusCode && error.response?.statusCode) {

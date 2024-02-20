@@ -86,11 +86,6 @@ class HashService {
     const decrypted = Buffer.concat([decipher.update(text), decipher.final()])
     return decrypted.toString("utf8")
   }
-
-  static staticAesEncrypt(data: string, key: Buffer): any {
-    const hashService = new HashService()
-    return hashService.aesEncrypt(data, key)
-  }
 }
 
 export default HashService
