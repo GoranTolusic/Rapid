@@ -1,4 +1,4 @@
-SUNBIRD APP (Requirements)
+RAPID Boilerplate (Requirements)
 
 1. Make sure you have installed stable version of node (recommended is 16.14.0) on your OS
 
