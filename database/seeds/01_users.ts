@@ -10,7 +10,7 @@ export async function seed(knex: Knex): Promise<void> {
     /*let testUsers: any = [
         {
             firstName: "Marko",
-            lastName: "Marković",
+            surname: "Marković",
             email: "marko@mail.com",
             password: await bcrypt.hash('marko1234', salt),
             createdAt: Date.now(),

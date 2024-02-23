@@ -1,7 +1,7 @@
 FROM node:16.14.0
 
-# Create books directory
-WORKDIR /usr/src/sunbird
+# Create application directory
+WORKDIR /usr/src/rapid
 
 #copy application files to workdir
 COPY . .
