@@ -22,11 +22,11 @@ Or if you have docker running, you can just run "npm run dockerize" and this wil
 
 TECHNOLOGY STACK:
 
-1. Sunbird API is written on top of express.js framework
+1. Rapid API is written on top of express.js framework
 
-2. Sunbird API use typescript instead of plain javascript
+2. Rapid API use typescript instead of plain javascript
 
-3. Knex is used for migrations (https://knexjs.org/guide/migrations.html)
+3. Knex is used for db migrations and seed operations (https://knexjs.org/guide/migrations.html)
 
 4. Typeorm is used as default orm library (https://typeorm.io/)
 
