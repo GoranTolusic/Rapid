@@ -79,7 +79,8 @@ export const envValidation = () => {
   if (!e.MQTT_USERNAME ||
       !e.MQTT_PASSWORD ||
       !e.MQTT_CONNECT_URL ||
-      !e.MQTT_CONNECT_TIMEOUT) {
+      !e.MQTT_CONNECT_TIMEOUT || 
+      !e.MQTT_PORT) {
       console.error("\x1b[31m", 'Error: Missing some of mqtt env variables. Please check env.examples for options', '\x1b[0m')
       error = true
   }
