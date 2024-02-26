@@ -5,6 +5,14 @@ CONTAINER_NAME="rapid"
 POSTGRE='postgreDB'
 EMQX='emqx'
 
+function is_port_in_use() {
+    local port=$1
+    if sudo netstat -tuln | grep -q ":$port"; then
+        echo "Port $port is already in use."
+        exit 1
+    fi
+}
+
 # Source environment variables from .env file
 if [ -f .env ]; then
     source .env
@@ -12,6 +20,11 @@ else
     echo ".env file not found. Make sure it exists in the same directory as the script. Look for .env.examples"
     exit 1
 fi
+
+# Check if required ports are in use
+is_port_in_use $DB_PORT
+is_port_in_use $PORT
+is_port_in_use $MQTT_PORT
 
 #Pull postgre image if does not exists
 if ! docker images | grep -q postgres; then
